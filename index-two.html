@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Clima - Interactive Weather</title>
+</head>
+<body>
+    <header class="navbar text-bg-dark">
+        <div class="container-fluid d-flex justify-content-between text-center">
+            <h1 class="navbar-brand"><span class="logo">CLIMA</span></h1>
+            <h1 class="navbar-text title">Weather Dashboard</h1>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search a Different Location" aria-label="Search">
+                <button class="btn btn-info" id="search-again" type="submit">Search</button>
+            </form>
+        </div>
+    </header>
+    <main>
+        <div id ="time" class="card m-5 text-bg-dark"></div>
+        <div class="d-flex justify-content-around text-center">
+            <div class="card w-50 p-3 h-50 m-5 text-bg-dark">
+                <h3 class="card-title border-bottom border-info">Current Conditions</h2>
+                <h1 class="card-subtitle" id="city-name"></h3>
+                <div class="container">
+                    <div class="row m-5">
+                        <div class="col">
+                            <p id="current-weather"></p>
+                        </div>
+                        <div class="col">
+                            <h3 id="current-temp"></h3>
+                            <h4>Feels Like: <span id="feels-like"></span></h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h3>Pressure</h3>
+                            <h1 id="pressure"></h1>
+                        </div>
+                        <div class="col">
+                            <h3>Humidity</h3>
+                            <h1 id="humidity"></h1>
+                        </div>
+                        <div class="col">
+                            <h3 class="col">Visibility</h3>
+                            <h1 id="visibility"></h1>
+                        </div>
+                        <div class="col">
+                            <h3 class="col">Wind</h3>
+                            <h1 id="wind"></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card w-50 p-3 h-50 m-5 text-bg-dark d-flex justify-content-center align-items-center">
+                <div id="radar-map"></div>
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/js/script-two.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+body {
+    background-image: url('../images/world.jpg');
+    background-size: cover;
+}
+
+.logo {
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #3a47a6;
+}
+
+.title {
+    color: white;
+    text-shadow: 0 0 2px black;
+}
+
+#time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
