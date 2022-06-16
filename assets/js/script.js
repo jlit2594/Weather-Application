@@ -1,3 +1,5 @@
+var key = config.MY_API_KEY;
+
 function nextPage () {
     window.location.href = "index-two.html"
 }
