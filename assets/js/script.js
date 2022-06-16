@@ -39,7 +39,7 @@ function fiveDay () {
     }
   };
   
-  fetch('https://community-open-weather-map.p.rapidapi.com/forecast?q=' + $('#city-search').val() + '&units=imperial', options)
+  fetch('https://community-open-weather-map.p.rapidapi.com/forecast/daily?q=' + $('#city-search').val() + '&cnt=6&units=imperial', options)
   .then((response) => {
     if (response.ok) {
       return response.json();

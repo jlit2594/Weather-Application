@@ -5,6 +5,7 @@ now.appendChild(timeHolder)
 let source = "https://embed.windy.com/embed2.html"
 
 let dashboard = document.querySelector("#dashboard")
+let fiveForecast = document.querySelector("#forecast")
 
 function populatePage() {
     let cityData = JSON.parse(localStorage.getItem("city data"))
@@ -54,11 +55,31 @@ function forecastFive () {
     let forecast = JSON.parse(localStorage.getItem("five day"));
     console.log(forecast);
 
-    for (i = 0; i < 5; i++) {
+    for (i = 1; i < forecast.list.length; i++) {
         let fiveFore = document.createElement("div")
-        fiveFore.className = "card text-bg-dark h-50"
-        fiveFore.innerHTML = "<h1>" + forecast.list[i].main.temp + "</h1>";
-        dashboard.appendChild(fiveFore);
+        fiveFore.className = "card col text-bg-dark h-50 five-day"
+
+        let fiveCond = document.createElement("div")
+        fiveCond.className = "condition-container"
+
+        let foreDay = document.createElement("h2");
+        foreDay.className = "variables"
+        let date = new Date (forecast.list[i].dt *1000);
+        const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        let name = month[date.getMonth()];
+        let day = date.getDate();
+        // document.write(day.toDateString());
+        foreDay.textContent = (name) + " " + day
+        
+        let fiveWea = document.createElement("div");
+        fiveWea.innerHTML = "<img src='http://openweathermap.org/img/wn/" + forecast.list[i].weather[0].icon + ".png' width='100' height='100'><br><h3>" + forecast.list[i].weather[0].main + "</h3>"
+
+        let fiveTemp = document.createElement("div");
+        fiveTemp.innerHTML = "<h1>" + forecast.list[i].temp.max + "° F</h1><br><h4>" + forecast.list[i].temp.min + "° F</h4>"
+        
+        fiveCond.append(fiveWea, fiveTemp)
+        fiveFore.append(foreDay, fiveCond)
+        fiveForecast.appendChild(fiveFore);
         // console.log(forecast.list[0].)
     }
 }
