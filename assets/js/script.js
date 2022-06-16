@@ -8,7 +8,7 @@ function citySearch () {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '',
+            'X-RapidAPI-Key': key,
             'X-RapidAPI-Host': 'community-open-weather-map.p.rapidapi.com'
         }
     };

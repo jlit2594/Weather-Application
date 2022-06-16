@@ -6,16 +6,17 @@ let source = "https://embed.windy.com/embed2.html"
 
 function populatePage() {
     let cityData = JSON.parse(localStorage.getItem("city data"))
+    console.log(cityData)
 
     let cityName = document.querySelector("#city-name")
     cityName.textContent = cityData.name;
     console.log(cityName)
 
     let currentWea = document.querySelector("#current-weather")
-    currentWea.textContent = cityData.weather
+    let conditions = document.createElement("div")
+    conditions.innerHTML = "<img src='http://openweathermap.org/img/wn/" + cityData.weather[0].icon + ".png' width='100' height='100'><br><h4>" + cityData.weather[0].main + "</h4><br><h5>" + cityData.weather[0].description + "</h5>";
+    currentWea.appendChild(conditions)
 
-    // let weaImg = document.createElement("div")
-    // weaImg.innerHTML = "<img>" + cityData.weather.icon
 
     let currentTemp = document.querySelector("#current-temp")
     currentTemp.textContent = cityData.main.temp + "° F"
@@ -23,14 +24,14 @@ function populatePage() {
     let currentFeel = document.querySelector("#feels-like")
     currentFeel.textContent = cityData.main.feels_like + "° F"
 
+    let clouds = document.querySelector("#clouds")
+    clouds.textContent = cityData.clouds.all + " %"
+
     let currPress = document.querySelector("#pressure")
-    currPress.textContent = cityData.main.pressure + " MBPS"
+    currPress.textContent = cityData.main.pressure + " hPa"
 
     let currHumid = document.querySelector("#humidity")
     currHumid.textContent = cityData.main.humidity + "%"
-
-    let currVis = document.querySelector("#visibility")
-    currVis.textContent = cityData.visibility
 
     let currWind = document.querySelector("#wind")
     currWind.textContent = cityData.wind.deg + "°, " + cityData.wind.speed + " mph"
