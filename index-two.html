@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Clima - Interactive Weather</title>
 </head>
-<body>
-    <header class="navbar text-bg-dark">
+<body id="page-two">
+    <header class="navbar text-bg-secondary">
         <div class="container-fluid d-flex justify-content-between text-center">
             <h1 class="navbar-brand"><span class="logo"><a href="index.html">CLIMA</a></span></h1>
             <form class="d-flex">
@@ -22,9 +22,9 @@
         </div>
     </header>
     <main id="dashboard">
-        <div id ="time" class="card m-5 text-bg-dark variables"></div>
+        <div id ="time" class="card m-5 text-bg-light border-info variables"></div>
         <div class="d-flex justify-content-around text-center">
-            <div class="card w-50 p-3 h-50 m-5 text-bg-dark">
+            <div class="card w-25 p-3 h-50 m-5 text-bg-light border-info">
                 <h1 class="card-subtitle" id="city-name"></h1>
                 <div class="container">
                     <div class="row m-5">
@@ -34,7 +34,7 @@
                         <div class="col temp-conditions">
                             <h1 id="current-temp"></h1>
                             <h4>Feels Like: <span id="feels-like"></span></h4>
-                            <h4>Cloudiness: <span id="clouds"></span></h4>
+                            <h4>Cloud Cover: <span id="clouds"></span></h4>
                         </div>
                     </div>
                     <div class="row">
@@ -53,18 +53,14 @@
                     </div>
                 </div>
             </div>
-            <div id="right-container" class="card w-50 p-3 h-50 m-5 text-bg-dark">
-                <div id="high-low"></div>
+            <div id="middle-container" class="card text-bg-light m-5 w-25 h-50 border-info">
+
+            </div>
+            <div id="right-container" class="card p-3 h-50 m-5 text-bg-light border-info">
                 <div id="radar-map"></div>
             </div>
         </div>
-        <div id="forecast" class="forecast row">
-            <!-- <div id="tomorrow"></div>
-            <div id="second"></div>
-            <div id="third"></div>
-            <div id="fourth"></div>
-            <div id="fifth"></div> -->
-        </div>
+        <div id="forecast" class="forecast row h-50"></div>
     </main>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
