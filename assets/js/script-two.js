@@ -4,6 +4,8 @@ now.appendChild(timeHolder)
 
 let source = "https://embed.windy.com/embed2.html"
 
+let dashboard = document.querySelector("#dashboard")
+
 function populatePage() {
     let cityData = JSON.parse(localStorage.getItem("city data"))
     console.log(cityData)
@@ -39,12 +41,26 @@ function populatePage() {
     let highLow = document.querySelector("#high-low");
     let currHigh = document.createElement("div")
     currHigh.className = "min-max";
-    currHigh.innerHTML = "<h3 class='variables'>Today's High</h3><br><h1>" + cityData.main.temp_max + "</h1><br><h3 class='variables'>Today's Low</h3><br><h1>" + cityData.main.temp_min + "</h1>" 
+    currHigh.innerHTML = "<h3 class='variables'>Today's High</h3><br><h1>" + cityData.main.temp_max + "° F</h1><br><h3 class='variables'>Today's Low</h3><br><h1>" + cityData.main.temp_min + "° F</h1>" 
     highLow.appendChild(currHigh);
 
     let radarMap = document.querySelector("#radar-map")
     radarMap.innerHTML = "<iframe width='650' height='450' src='" + source + "?lat=" + cityData.coord.lat + "&lon=" + cityData.coord.lon + "&detailLat=" + cityData.coord.lat + "&detailLon=" + cityData.coord.lon + "&width=650&height=450&zoom=8&level=surface&overlay=radar&product=radar&menu=&message=&marker=true&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1' frameborder='0'></iframe>"
 
+    forecastFive();
+}
+
+function forecastFive () {
+    let forecast = JSON.parse(localStorage.getItem("five day"));
+    console.log(forecast);
+
+    for (i = 0; i < 5; i++) {
+        let fiveFore = document.createElement("div")
+        fiveFore.className = "card text-bg-dark h-50"
+        fiveFore.innerHTML = "<h1>" + forecast.list[i].main.temp + "</h1>";
+        dashboard.appendChild(fiveFore);
+        // console.log(forecast.list[0].)
+    }
 }
 
 function currentTime () {
