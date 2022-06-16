@@ -36,6 +36,12 @@ function populatePage() {
     let currWind = document.querySelector("#wind")
     currWind.textContent = cityData.wind.deg + "°, " + cityData.wind.speed + " mph"
 
+    let highLow = document.querySelector("#high-low");
+    let currHigh = document.createElement("div")
+    currHigh.className = "min-max";
+    currHigh.innerHTML = "<h3 class='variables'>Today's High</h3><br><h1>" + cityData.main.temp_max + "</h1><br><h3 class='variables'>Today's Low</h3><br><h1>" + cityData.main.temp_min + "</h1>" 
+    highLow.appendChild(currHigh);
+
     let radarMap = document.querySelector("#radar-map")
     radarMap.innerHTML = "<iframe width='650' height='450' src='" + source + "?lat=" + cityData.coord.lat + "&lon=" + cityData.coord.lon + "&detailLat=" + cityData.coord.lat + "&detailLon=" + cityData.coord.lon + "&width=650&height=450&zoom=8&level=surface&overlay=radar&product=radar&menu=&message=&marker=true&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1' frameborder='0'></iframe>"
 

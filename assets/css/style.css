@@ -1,3 +1,8 @@
+:root {
+    --primary-color: #343a40;
+    --secondary-color: #0dcaf0;
+}
+
 body {
     background-image: url('../images/world.jpg');
     background-size: cover;
@@ -15,10 +20,35 @@ body {
     text-shadow: 0 0 2px black;
 }
 
+.variables {
+    border-bottom: solid 3px #0dcaf0;
+}
+
+.temp-conditions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.min-max {
+    display:flex;
+    flex-direction: column;
+}
+
 #time {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#city-name {
+    border-bottom: solid 3px #0dcaf0;
+}
+
+#right-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 /* #current-weather */

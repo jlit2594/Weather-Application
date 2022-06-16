@@ -27,8 +27,34 @@ function citySearch () {
       })
       .catch((error) => console.error("FETCH ERROR:", error));
 
-    setTimeout(nextPage, 2000);
-}
+fiveDay()
+};
+
+function fiveDay () {
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': key,
+      'X-RapidAPI-Host': 'community-open-weather-map.p.rapidapi.com'
+    }
+  };
+  
+  fetch('https://community-open-weather-map.p.rapidapi.com/forecast?q=' + $('#city-search').val() + '&units=imperial', options)
+  .then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("Sorry, we were unable to complete your request.");
+    }
+  })
+  .then(data => {
+    console.log(data);
+    localStorage.setItem("five day", JSON.stringify(data))
+  })
+  .catch((error) => console.error("FETCH ERROR:", error));
+
+  setTimeout(nextPage, 2000);
+};
 
 
 $('#start').on('click', citySearch);

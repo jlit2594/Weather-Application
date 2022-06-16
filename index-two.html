@@ -22,16 +22,16 @@
         </div>
     </header>
     <main>
-        <div id ="time" class="card m-5 text-bg-dark"></div>
+        <div id ="time" class="card m-5 text-bg-dark variables"></div>
         <div class="d-flex justify-content-around text-center">
             <div class="card w-50 p-3 h-50 m-5 text-bg-dark">
                 <h1 class="card-subtitle" id="city-name"></h1>
                 <div class="container">
                     <div class="row m-5">
-                        <div class="col">
+                        <div class="col curr-conditions">
                             <div id="current-weather"></div>
                         </div>
-                        <div class="col">
+                        <div class="col temp-conditions">
                             <h1 id="current-temp"></h1>
                             <h4>Feels Like: <span id="feels-like"></span></h4>
                             <h4>Cloudiness: <span id="clouds"></span></h4>
@@ -39,21 +39,22 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <h3>Pressure</h3>
+                            <h3 class="variables">Pressure</h3>
                             <h1 id="pressure"></h1>
                         </div>
                         <div class="col">
-                            <h3>Humidity</h3>
+                            <h3 class="variables">Humidity</h3>
                             <h1 id="humidity"></h1>
                         </div>
                         <div class="col">
-                            <h3 class="col">Wind</h3>
+                            <h3 class="variables">Wind</h3>
                             <h1 id="wind"></h1>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card w-50 p-3 h-50 m-5 text-bg-dark d-flex justify-content-center align-items-center">
+            <div id="right-container" class="card w-50 p-3 h-50 m-5 text-bg-dark">
+                <div id="high-low"></div>
                 <div id="radar-map"></div>
             </div>
         </div>
