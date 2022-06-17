@@ -33,7 +33,7 @@ function citySearch () {
       })
       .catch((error) => console.error("FETCH ERROR:", error));
 
-hourlyWeather();
+// hourlyWeather();
 };
 
 function hourlyWeather () {
@@ -59,7 +59,7 @@ function hourlyWeather () {
   })
   .catch((error) => console.error("FETCH ERROR:", error));
 
-  fiveDay();
+//   fiveDay();
 };
 
 function fiveDay () {
@@ -85,7 +85,7 @@ function fiveDay () {
   })
   .catch((error) => console.error("FETCH ERROR:", error));
 
-  setTimeout(populatePage, 1000)
+//   setTimeout(populatePage, 1000)
 };
 
 function populatePage() {
@@ -193,6 +193,15 @@ function currentTime () {
    
 }
 
+function searchAgain(event) {
+    event.preventDefault();
+    citySearch();
+    fiveDay();
+    hourlyWeather();
+
+    setTimeout(location.reload(), 5000);
+}
+
 populatePage();
 setInterval(currentTime, 1000);
-// $("#search-again").on('click', (citySearch, 1000));
+$("#search-again").on('click', searchAgain);
