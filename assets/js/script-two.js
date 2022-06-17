@@ -2,11 +2,91 @@ let now = document.querySelector("#time");
 let timeHolder = document.createElement("h2");
 now.appendChild(timeHolder);
 
+var key = config.MY_API_KEY;
+
 let source = "https://embed.windy.com/embed2.html"
 
 let dashboard = document.querySelector("#dashboard");
 let hourBox = document.querySelector("#middle-container");
 let fiveForecast = document.querySelector("#forecast");
+
+function citySearch () {
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': key,
+            'X-RapidAPI-Host': 'community-open-weather-map.p.rapidapi.com'
+        }
+    };
+    
+    fetch('https://community-open-weather-map.p.rapidapi.com/weather?q=' + $('#new-city').val() + '&lang=null&units=imperial', options)
+    .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Sorry, we were unable to complete your request.");
+        }
+      })
+      .then(data => {
+        console.log(data);
+        localStorage.setItem("city data", JSON.stringify(data))
+      })
+      .catch((error) => console.error("FETCH ERROR:", error));
+
+hourlyWeather();
+};
+
+function hourlyWeather () {
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': key,
+      'X-RapidAPI-Host': 'community-open-weather-map.p.rapidapi.com'
+    }
+  };
+  
+  fetch('https://community-open-weather-map.p.rapidapi.com/forecast?q=' + $('#new-city').val() + '%2Cus&units=imperial', options)
+  .then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("Sorry, we were unable to complete your request.");
+    }
+  })
+  .then(data => {
+    console.log(data);
+    localStorage.setItem("hourly", JSON.stringify(data))
+  })
+  .catch((error) => console.error("FETCH ERROR:", error));
+
+  fiveDay();
+};
+
+function fiveDay () {
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': key,
+      'X-RapidAPI-Host': 'community-open-weather-map.p.rapidapi.com'
+    }
+  };
+  
+  fetch('https://community-open-weather-map.p.rapidapi.com/forecast/daily?q=' + $('#new-city').val() + '&cnt=6&units=imperial', options)
+  .then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("Sorry, we were unable to complete your request.");
+    }
+  })
+  .then(data => {
+    console.log(data);
+    localStorage.setItem("five day", JSON.stringify(data))
+  })
+  .catch((error) => console.error("FETCH ERROR:", error));
+
+  setTimeout(populatePage, 1000)
+};
 
 function populatePage() {
     let cityData = JSON.parse(localStorage.getItem("city data"));
@@ -37,10 +117,10 @@ function populatePage() {
     currHumid.textContent = cityData.main.humidity + "%";
 
     let currWind = document.querySelector("#wind");
-    currWind.textContent = cityData.wind.deg + "°, " + cityData.wind.speed + " mph";
+    currWind.textContent = cityData.wind.deg + "°, " + Math.round(cityData.wind.speed) + " mph";
 
     let radarMap = document.querySelector("#radar-map");
-    radarMap.innerHTML = "<iframe width='650' height='450' src='" + source + "?lat=" + cityData.coord.lat + "&lon=" + cityData.coord.lon + "&detailLat=" + cityData.coord.lat + "&detailLon=" + cityData.coord.lon + "&width=650&height=450&zoom=8&level=surface&overlay=radar&product=radar&menu=&message=&marker=true&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1' frameborder='0'></iframe>"
+    radarMap.innerHTML = "<iframe src='" + source + "?lat=" + cityData.coord.lat + "&lon=" + cityData.coord.lon + "&detailLat=" + cityData.coord.lat + "&detailLon=" + cityData.coord.lon + "&width=650&height=450&zoom=8&level=surface&overlay=radar&product=radar&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1' frameborder='0'></iframe>"
 
     loadHourly();
     forecastFive();
@@ -115,4 +195,4 @@ function currentTime () {
 
 populatePage();
 setInterval(currentTime, 1000);
-// $("#search-again").on('click', citySearch);
+// $("#search-again").on('click', (citySearch, 1000));
