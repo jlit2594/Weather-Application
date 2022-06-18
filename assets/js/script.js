@@ -12,7 +12,7 @@ function search (event) {
     var weatherData = [];
     weatherData.push(city);
     console.log(weatherData);
-    localStorage.setItem("weather", weatherData)
+    localStorage.setItem("weather", JSON.stringify(weatherData));
   };
 
   // function pushData () {
