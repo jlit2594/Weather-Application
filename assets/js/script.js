@@ -4,7 +4,24 @@ function nextPage () {
     window.location.href = "index-two.html"
 }
 
-function citySearch () {
+function search (event) {
+  event.preventDefault();
+  var city = {};
+
+  function saveData(weatherData) {
+    var weatherData = [];
+    weatherData.push(city);
+    console.log(weatherData);
+    localStorage.setItem("weather", weatherData)
+  };
+
+  // function pushData () {
+      
+  //     
+  //     saveData();
+  // };
+
+  function citySearch () {
     const options = {
         method: 'GET',
         headers: {
@@ -23,14 +40,15 @@ function citySearch () {
       })
       .then(data => {
         console.log(data);
-        localStorage.setItem("city data", JSON.stringify(data))
+        let current = data
+        city.current = JSON.stringify(current);
+        // localStorage.setItem("city data", weatherData.current)
       })
       .catch((error) => console.error("FETCH ERROR:", error));
 
-hourlyWeather();
-};
+  };
 
-function hourlyWeather () {
+  function hourlyWeather () {
   const options = {
     method: 'GET',
     headers: {
@@ -49,11 +67,12 @@ function hourlyWeather () {
   })
   .then(data => {
     console.log(data);
-    localStorage.setItem("hourly", JSON.stringify(data))
+    let hourly = data
+    city.hourly = JSON.stringify(hourly);
+    // localStorage.setItem("hourly", )
   })
   .catch((error) => console.error("FETCH ERROR:", error));
 
-  fiveDay();
 };
 
 function fiveDay () {
@@ -75,12 +94,24 @@ function fiveDay () {
   })
   .then(data => {
     console.log(data);
-    localStorage.setItem("five day", JSON.stringify(data))
+    let forecast = data
+    city.forecast = JSON.stringify(forecast);
+    // localStorage.setItem("five day", )
   })
   .catch((error) => console.error("FETCH ERROR:", error));
 
-  setTimeout(nextPage, 1000);
+  // pushData();
+  saveData();
 };
 
 
-$('#start').on('click', citySearch);
+
+citySearch();
+hourlyWeather();
+fiveDay();
+
+};
+
+
+
+$('#start').on('click', search);
