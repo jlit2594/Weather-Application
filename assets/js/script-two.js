@@ -213,15 +213,13 @@ function populateHistory () {
     history.appendChild(prevCity)
     historyBar.appendChild(history);
     
-    document.getElementById(city[i]).addEventListener('click', reloadPlace)
+    document.getElementById(city[i]).addEventListener('click', push)
 
-    function reloadPlace(event) {
-    event.preventDefault();
-    let location = document.getElementById(city[i]).value
-    city.unshift(location);
-    localStorage.setItem("cities", JSON.stringify(city))
-    reloadPage();
-    };
+    function push () {
+      city.unshift(prevCity.value);
+      localStorage.setItem('cities', JSON.stringify(city))
+      setTimeout(reloadPage, 2000)
+    }
   };
 };
 
