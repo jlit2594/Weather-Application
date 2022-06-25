@@ -108,3 +108,49 @@ body {
 #current-temp {
     font-size: 50px;
 }
+
+@media screen and (max-width: 1440px) {
+    .media-one {
+        flex-direction: column;
+    }
+    
+    .current {
+        flex-direction: row;
+        max-width: 100%
+    }
+
+    #city-name {
+        margin-bottom: 0;
+        height: 75px;
+    }
+
+    #right-container {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .forecast {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .current {
+        flex-direction: column;
+    }
+
+    #right-container {
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .media-two {
+        margin: 0!important;
+    }
+
+    .temp-conditions {
+        width: 100%;
+    }
+}
