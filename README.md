@@ -1,6 +1,6 @@
 # CLIMA, An Interactive Weather Application
 
-[This is a picture of the landing page](./assets/images/capture.png)
+![This is a picture of the landing page](./assets/images/capture.png)
 
 ## Purpose
 CLIMA instantly returns weather info for any location that is entered. That includes current conditions, an hourly forecast, and a five-day forecast. The application also logs recent locations so the user can switch between them.
