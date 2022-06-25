@@ -103,12 +103,12 @@ body {
     width: 100%;
 }
 
-/* #current-weather */
-
 #current-temp {
     font-size: 50px;
 }
 
+
+/* MEDIA QUERIES */
 @media screen and (max-width: 1440px) {
     .media-one {
         flex-direction: column;

@@ -1,8 +1,10 @@
+// Global Variables
 let now = document.querySelector("#time");
 let timeHolder = document.createElement("h2");
 now.appendChild(timeHolder);
 
-var key = config.MY_API_KEY;
+// originally hid this in a .gigignore but that breaks the whole website so I have to put it here. Good thing the api is free. 
+var key = 'cfbc8d3087msh6c6ea9d7d95f9e1p1b1cecjsn764def6fdef3';
 
 let source = "https://embed.windy.com/embed2.html"
 
@@ -13,10 +15,12 @@ let historyBar = document.querySelector("#history")
 
 let city = JSON.parse(localStorage.getItem("cities"))
 
+// sets up empty objects/arrays which will be added to later
 let currentWeather = {};
 let hourWeather = {};
 let fiveDayForecast = {};
 
+// when the user enters a location, this function runs a search for the current weather
 function citySearch () {
     const options = {
         method: 'GET',
@@ -42,6 +46,7 @@ function citySearch () {
 
 };
 
+// runs a search for an hourly forecast for the same location
 function hourlyWeather () {
   const options = {
     method: 'GET',
@@ -67,6 +72,7 @@ function hourlyWeather () {
 
 };
 
+// runs a search for a five-day forecast
 function fiveDay () {
   const options = {
     method: 'GET',
@@ -93,6 +99,7 @@ function fiveDay () {
   setTimeout(populatePage, 1000)
 };
 
+// this function, which is called after all searches are run, populates the page with current conditions
 function populatePage() {
     let cityName = document.querySelector("#city-name");
     cityName.textContent = currentWeather.name;
@@ -128,6 +135,7 @@ function populatePage() {
     forecastFive();
 }
 
+// populates hourly forecast
 function loadHourly () {
   for (i = 0; i < 7; i++) {
     let hourLine = document.createElement("div");
@@ -153,6 +161,7 @@ function loadHourly () {
   };
 }
 
+// populates five day forecast
 function forecastFive () {
   for (i = 1; i < fiveDayForecast.list.length; i++) {
     let fiveFore = document.createElement("div")
@@ -184,15 +193,18 @@ function forecastFive () {
  
 }
 
+// I put this in because I felt like most weather sites show you the current time. it felt relevant.
 function currentTime () {
     let rightNow = moment().format("MMMM Do, YYYY - hh:mm a");
     timeHolder.textContent = rightNow;
    
 }
 
+// when the user attempts to search another location, this function is run
 function searchAgain(event) {
   event.preventDefault();
   newCity = JSON.stringify($('#new-city').val())
+  //adds the entered city to the front of the array
   city.unshift(newCity);
   localStorage.setItem("cities", JSON.stringify(city))
   let reload = location.reload()
@@ -200,7 +212,7 @@ function searchAgain(event) {
 }
 
 
-
+// adds the recent searches to the header as buttons
 function populateHistory () {
   for (let i = 0; i < city.length; i++) {
     let history = document.createElement("div")
@@ -223,6 +235,7 @@ function populateHistory () {
   };
 };
 
+// reloads the page
 function reloadPage () {
   let reloadTwo = location.reload();
   setTimeout(reloadTwo, 5000)
